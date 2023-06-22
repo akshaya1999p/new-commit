@@ -1983,17 +1983,137 @@ alert(col1);
                               <option value="1" selected>Net 60</option>
                               <option value="2" >Due end of month</option>
                               <option value="3" >Due on reciept</option>
-                             <option> <a class="btn btn-outline-secondary ml-1" data-target="#crperiod" data-toggle="modal">
+                            <!--- <option> <a class="btn btn-outline-secondary ml-1" data-target="#crperiod" data-toggle="modal">
                                 <button type="button" class="btn btn-outline-secondary ml-1" 
                                 data-target="#newvendor" data-toggle="modal">Configure Payment Terms</button>
-                            </a>   </option>                     
+                            </a>   </option>-->                     
                             </select>
+                            <a>
+                                        <button type="button" class="btn btn-outline-secondary ml-1" 
+                                        data-target="#newvendor" data-toggle="modal">+</button>
+                                    </a>
                             
                             </form>
                           
                             </div>
                             
                               
+
+
+
+
+<!--modal-->
+
+<div class="modal fade" id="newvendor">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="background-color: #213b52;">
+            <div class="modal-header">
+                <h3 class="m-3">Configure Payment Terms</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+              
+                               
+                <div class="card p-3 m-3"><center><table>
+                  
+                    <form action="createvendor1" method="post" class="needs-validation" novalidate autocomplete="off">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                       
+                          
+                            <div class="row">
+                                
+                                   <th> <label for="net60"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terms Name*</b></label></th>
+                                    <!--- <input  style="width: 200px;" type="text" class="form-control" id="net60" name="net60" value=" Net 60"
+                                           required>
+                                           <br>
+                                           <input style="width: 200px;"  type="text" class="form-control" id="validationCustom03" name="email"
+                                        value="Due end of month">
+                                        <br>
+                                        <input style="width: 200px;"  type="text" class="form-control" id="validationCustom03" name="email"
+                                        value="Due end of month">
+                                        <br>
+                                        <a  class="btn btn-outline-secondary ml-1" role="button" id="addrow" onclick="add_item_row()">+</a>-->
+
+                                         
+                                   <th><label for="day60"><b>Number of Days*</b></label></th>
+                                    <!--<input style="width: 100px;" type="text" class="form-control" id="day60" name="day60" value="60"
+                                           required>
+                                           <br>
+                                           <input style="width: 100px;" type="text" class="form-control" id="validationCustom03"
+                                         name="website" value="0"><br>
+                                         <input style="width: 100px;" type="text" class="form-control" id="validationCustom03"
+                                         name="website" value="0">
+                                         <br>-->
+                                    </tr>
+                                  
+                                    <tr>
+                                      <td>
+                                      <div class="col-md-3 mt-2">
+                                      <input  style="width: 200px;" type="text" class="form-control" id="net60" name="net60" value=" Net 60"
+                                           required></td>
+                                        <td><input style="width: 100px;" type="text" class="form-control" id="day60" name="day60" value="60"
+                                          required></td></div></tr>
+
+                                          <tr>
+                                            <td>
+                                              <div class="col-md-3 mt-2">
+                                              <input style="width: 200px;"  type="text" class="form-control" id="validationCustom03" name="email"
+                                              value="Due end of month"></td>
+                                              
+                                              <td><input style="width: 100px;" type="text" class="form-control" id="validationCustom03"
+                                                name="website" value="0"></td></div></tr>
+
+                                          <tr>
+                                            <td>
+                                              <div class="col-md-3 mt-2">
+                                                <input style="width: 200px;"  type="text" class="form-control" id="validationCustom03" name="email"
+                                                value="Due end of month"></td>
+                                                <td> <input style="width: 100px;" type="text" class="form-control" id="validationCustom03"
+                                                  name="website" value="0"></td></div></tr>
+                                              
+                                </div>
+                                
+                            </div>
+                            
+                          
+                        {% endif %}
+                    </form></table>
+                </div></center>
+            </div>
+        </div>
+    </div>  
+</div>   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                               
                  
                 <table class="table table-responsive-md mt-5 table-hover">
@@ -3557,108 +3677,7 @@ $('#termadd').on('change', function() {
         });
     </script>
 
-    <script src="{% static 'assets/plugins/select2/js/select2.min.js' %}"></script>    
-    <script>
-        function insertValue() {
-            var select = document.getElementById("select"),
-            txtVal = document.getElementById("val").value,
-            newOption = document.createElement("OPTION"),
-            newOptionval = document.createTextNode(txtVal);
-            newOption.appendChild(newOptionval);
-            select.insertBefore(newOption, select.lastChild);
-        }
-        
-        $('.datepicker').pickadate({
-            selectMonths: true,
-            selectYears: true
-        }),
-        $('.timepicker').pickatime()
-        
-        $(function () {
-            $('#date-time').bootstrapMaterialDatePicker({
-                format: 'YYYY-MM-DD HH:mm'
-            });
-            $('#date').bootstrapMaterialDatePicker({
-                time: false
-            });
-            $('#time').bootstrapMaterialDatePicker({
-                date: false,
-                format: 'HH:mm'
-            });
-        });
-        
-        $(document).ready(function () {
-            var current_fs, next_fs, previous_fs; //fieldsets
-            var opacity;
-            $(".next").click(function () {
-                current_fs = $(this).parent();
-                next_fs = $(this).parent().next();
-
-                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-                next_fs.show();
-                current_fs.animate({opacity: 0}, {
-                    step: function (now) {
-                        opacity = 1 - now;
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        next_fs.css({'opacity': opacity});
-                    },
-                    duration: 600
-                });
-            });
-            $(".previous").click(function () {
-                current_fs = $(this).parent();
-                previous_fs = $(this).parent().prev();
-                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-                previous_fs.show();
-                current_fs.animate({opacity: 0}, {
-                    step: function (now) {
-                        opacity = 1 - now;
-                        current_fs.css({
-                            'display': 'none',
-                            'position': 'relative'
-                        });
-                        previous_fs.css({'opacity': opacity});
-                    },
-                    duration: 600
-                });
-            });
-
-            $('.radio-group .radio').click(function () {
-                $(this).parent().find('.radio').removeClass('selected');
-                $(this).addClass('selected');
-            });
-        });
-            // $('#tax').on('change', function () {
-            //     alert(" INFORMATION \n\n Change saleprice before changing tax.\n Never mind if already done.")
-            //     tax = parseFloat($('#tax').val());
-            //     saleprice = parseFloat($('#saleprice').val());
-            //     if ($("#inclusive").prop('checked') == true) {
-            //         taxm = 1 + (tax / 100)
-            //         salep = saleprice / taxm
-            //         document.getElementById('saleprice').value = salep.toFixed(2)
-            //     }
-            // });
-
-        
-        function ShowHideDiv(track) {
-            var inventorytrack = document.getElementById("inventorytrack");
-            inventorytrack.style.display = track.checked ? "flex" : "none";
-
-        } 
-    </script>
-
-<script type="text/javascript">
-    $('.porder').click(function(e){
-        var result = confirm("Are you created purchase order number manually or user preference");
-
-        if(!result) {
-            e.preventDefault();
-        }
-    });
-</script>
+    
 
 
 
