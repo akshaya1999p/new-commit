@@ -852,15 +852,14 @@ urlpatterns = [
 
 
 
-      path('gorecinvoices',views.gorecinvoices,name='gorecinvoices'),
+        path('gorecinvoices',views.gorecinvoices,name='gorecinvoices'),
+        path('createrecinvoices',views.createrecinvoices,name='createrecinvoices'),
+        path('addrecinvoices',views.addrecinvoices,name='addrecinvoices'),
+        path('recinvoice_view',views.recinvoice_view,name='recinvoice_view'),
+        path('itemdata',views.itemdata,name='itemdata'),
+        path('reccreatecustomer1',views.reccreatecustomer1,name='reccreatecustomer1'),
+        path(' createrec_item1',views. createrec_item1,name='createrec_item1'),
 
-      path('createrecinvoices',views.createrecinvoices,name='createrecinvoices'),
-      path('addrecinvoices',views.addrecinvoices,name='addrecinvoices'),
-      path('recinvoice_view',views.recinvoice_view,name='recinvoice_view'),
-      path('itemdata',views.itemdata,name='itemdata'),
-      path('createcustomer_rec1',views.createcustomer_rec1,name='createcustomer_rec1'),
-
-      #path('recinvoice',views.recinvoice,name='recinvoice'),
 
 
         
